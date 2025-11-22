@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>GeoFotoWork - Registro de Obra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="vistaInicio" class="vista">
+    <h1>Obras en Construccion</h1>
+    <h3>Seleccione la Obra para iniciar</h3>
+    
+    <select id="selectObra" class="select-oculto">
+        <option value="">-- Seleccione una obra --</option>
+        <option value="Vitacura">Obra Vitacura</option>
+        <option value="Providencia">Obra Providencia</option>
+        <option value="Macul">Obra Macul</option>
+        <option value="Las Condes">Obra Las Condes</option>
+    </select>
+    
+    <div id="obraSeleccionadaDisplay" class="seleccion-actual" onclick="toggleListaObras()">
+        <span id="obraSeleccionadaTexto">-- Seleccione una obra --</span>
+        <span class="icono-flecha">▼</span>
+    </div>
+
+    <div id="listaObrasDesplegable" class="lista-opciones oculto-menu">
+        <div class="opcion-obra" data-value="Vitacura" onclick="seleccionarObraVisual('Vitacura', this)">🏢 Obra Vitacura</div>
+        <div class="opcion-obra" data-value="Providencia" onclick="seleccionarObraVisual('Providencia', this)">🏙️ Obra Providencia</div>
+        <div class="opcion-obra" data-value="Macul" onclick="seleccionarObraVisual('Macul', this)">🏗️ Obra Macul</div>
+        <div class="opcion-obra" data-value="Las Condes" onclick="seleccionarObraVisual('Las Condes', this)">🌆 Obra Las Condes</div>
+    </div>
+
+
+    <div class="acciones">
+        <button onclick="confirmarObra()">✅ Confirmar Selección e Identificación</button>
+    
+        <p style="text-align: center; margin-top: 30px; color: #555; font-size: 14px;">o</p> 
+        <div class="acciones"> 
+            <button onclick="mostrarVistaListado()">📋 Ver Listado de Registros</button> 
+        </div> 
+    </div>
+</div>
+
+
+
+
+    <div id="vistaBiometria" class="vista oculto">
+        <h2>Paso 2: Identificación y Autenticación</h2>
+        <p>Para registrar fotos en la obra <span id="obraSeleccionada"></span>, primero ingrese su nombre o ID y valide su identidad.</p>
+        
+        <label for="inputNombre" style="display: block; margin-bottom: 5px; font-weight: bold; text-align: left; max-width: 90%; margin: 0 auto; margin-top: 10px;">Su Nombre/ID:</label>
+        <input type="text" id="inputNombre" placeholder="Ej: Juan Pérez o RUT: 12.345.678-K" class="input-profesional">
+
+        <div class="acciones">
+            <button onclick="iniciarAutenticacion()">👆 Verificar Identidad con Biometría</button>
+        </div>
+        <p id="bioResultado"></p>
+    </div>
+
+    <div id="vistaCamara" class="vista oculto">
+        <h2>Registro de Progreso de Obra</h2>
+        <p>Usuario: <span id="usuarioActivo" style="font-weight: bold; color: #008000;"></span></p>
+        <p>Obra activa: <span id="obraActiva" style="font-weight: bold; color: #007BFF;"></span></p>
+        <div class="acciones">
+            <button onclick="registrarFoto()">📸 Tomar Foto y Georreferenciar</button>
+        </div>
+        <div id="fotoResultado">
+            </div>
+        <hr style="margin-top: 20px;">
+        <div class="acciones">
+            <button onclick="mostrarVistaListado()">📋 Ver Listado de Registros</button>
+        </div>
+    </div>
+
+    <div id="vistaListado" class="vista oculto">
+        <h2>Informe de Registros</h2>
+        <div class="acciones">
+            <button onclick="verListado()">Actualizar Listado</button>
+            <button onclick="limpiarListado()">Limpiar Historial</button>
+            <button onclick="exportarYEnviarCorreo()">📧 Enviar Correo con Informe</button>
+        </div>
+        <div id="contenidoListado">
+            </div>
+    </div>
+
+    <div id="vistaRegistro" class="vista oculto">
+        <h2>Detalle del Registro</h2>
+        <div id="detalleRegistro">
+            </div>
+        <div class="acciones">
+            <button onclick="mostrarVistaListado()">⬅️ Volver al Listado</button>
+        </div>
+    </div>
+
+    <div class="acciones" style="max-width: 600px; width: 90%; margin-left: auto; margin-right: auto;">
+        <button id="btnVolver" class="oculto" onclick="mostrarVista('inicio')">🏠 Volver al Inicio</button>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/views.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+/* =================================================== */
+/* GeoFotoWork: Estilos Móviles Profesionales (Industrial) */
+/* =================================================== */
+
+/* Variables de Color (Mejor Práctica) */
+:root {
+    --color-primary: #007bff; /* Azul Industrial */
+    --color-secondary: #6c757d; /* Gris Herramienta */
+    --color-warning: #FF6F00; /* Naranja Seguridad/Trazabilidad */
+    --color-success: #28a745; /* Verde Confirmación */
+    --color-error-base: #dc3545; /* Rojo de Error */
+    --color-text-dark: #343A40; /* Gris Carbón para texto */
+    --color-background-base: #f4f7f6; /* Gris Hormigón Suave */
+}
+
+/* 1. BASE Y CONTENEDOR PRINCIPAL */
+/* --------------------------------------------------- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-background-base);
+    color: var(--color-text-dark); /* Texto más oscuro y profesional */
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.vista {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08); /* Sombra más definida */
+    border-top: 5px solid var(--color-primary); /* Toque industrial */
+}
+
+.oculto {
+    display: none !important;
+}
+
+/* Encabezados */
+h1 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-transform: uppercase; /* Toque industrial */
+}
+
+h3 {
+    color: #555;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+/* 2. BOTONES Y ACCIONES */
+/* --------------------------------------------------- */
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 4px; /* Bordes menos redondeados, más robustos */
+    font-size: 1.05rem; /* Fuente ligeramente más grande */
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    width: 100%;
+}
+
+button:active {
+    background-color: #0056b3;
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 123, 255, 0.3);
+}
+
+/* Botones de acción secundaria (limpiar, volver) - Usamos Gris Herramienta */
+.acciones button[onclick*="limpiar"],
+.acciones button[onclick*="mostrarVistaListado"] {
+    background-color: var(--color-secondary); /* Gris Herramienta */
+    box-shadow: none;
+}
+
+.acciones button[onclick*="limpiar"]:active,
+.acciones button[onclick*="mostrarVistaListado"]:active {
+    background-color: #5a6268;
+}
+
+/* Botón de volver al inicio (fuera de las vistas) - Usamos Gris Herramienta */
+#btnVolver {
+    background-color: var(--color-secondary); /* Cambio de verde a gris */
+    box-shadow: 0 4px 6px rgba(108, 117, 125, 0.2);
+    margin: 1rem 0;
+}
+#btnVolver:active {
+    background-color: #5a6268;
+}
+
+
+/* Entradas y Selectores */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0 1.5rem 0;
+    display: inline-block;
+    border: 1px solid #c7c7c7; /* Borde más sutil */
+    border-radius: 4px; /* Bordes menos redondeados */
+    box-sizing: border-box;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* Sombra interna sutil */
+}
+
+/* 3. LISTADO DE REGISTROS (TARJETAS) */
+/* --------------------------------------------------- */
+
+#contenidoListado {
+    margin-top: 2rem;
+}
+
+.fotoItem {
+    background-color: #ffffff;
+    border: 1px solid #cccccc; /* Borde más firme para sentirlo como un 'documento' */
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra más fuerte */
+    transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+.fotoItem:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #fcfcfc;
+}
+
+/* Imagen en el listado */
+.fotoItem img {
+    width: 100%;
+    height: auto;
+    max-height: 250px; /* Un poco más de altura para la evidencia */
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Estilos de texto dentro del ítem */
+.fotoItem p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem; /* Ligeramente más legible */
+}
+
+.fotoItem strong {
+    color: var(--color-text-dark); /* Cambiamos el color fuerte a gris oscuro */
+}
+.fotoItem p strong {
+    color: var(--color-primary); /* Mantenemos el azul para los datos más relevantes */
+}
+
+
+/* 4. MENSAJES Y RESULTADOS */
+/* --------------------------------------------------- */
+
+/* Mensajes de Error de Validación (Hard Errors) */
+.mensaje-error {
+    background-color: #f8d7da; /* Fondo rojo claro */
+    color: var(--color-error-base); /* Texto Rojo Error */
+    border: 1px solid #f5c6cb;
+    border-left: 5px solid var(--color-error-base); /* Barra de énfasis */
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-align: left;
+    font-weight: 700;
+}
+
+/* Mensajes de Advertencia (GPS o fallos leves) - Usamos Naranja Seguridad */
+.error-msg { 
+    background-color: #fff3cd; /* Fondo amarillo/naranja claro */
+    color: #856404; /* Texto marrón-oscuro */
+    border: 1px solid #ffeeba;
+    border-left: 5px solid var(--color-warning); /* Barra de Naranja Seguridad */
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.mensaje-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    border-left: 5px solid var(--color-primary); /* Barra de Azul Primario */
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-align: left;
+    font-weight: 700;
+}
+
+/* Contenedor de resultados (cámara) */
+#fotoResultado {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+#fotoResultado p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-success); /* Verde para éxito */
+    margin-bottom: 1.5rem;
+}
+
+/* Imagen en vista cámara/detalle */
+#fotoResultado img,
+#detalleRegistro img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 4px;
+    border: 1px solid #ccc; /* Un pequeño borde para el marco */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Sombra más fuerte para énfasis */
+}
+
+
+/* 1. Estilo para ocultar el select original */
+.select-oculto {
+    display: none;
+}
+
+/* 2. Estilo del botón/caja que muestra la selección actual */
+.seleccion-actual {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    max-width: 350px; /* Limitar el ancho para centrar */
+    margin: 15px auto 0 auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación de la flecha */
+.icono-flecha {
+    transition: transform 0.3s;
+    font-size: 1.2em;
+}
+.rotar {
+    transform: rotate(180deg);
+}
+
+/* 3. Estilo de la lista desplegable de opciones */
+.lista-opciones {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    max-width: 350px;
+    margin: 0 auto;
+    position: relative; /* Para que el shadow quede bien */
+    z-index: 10; /* Asegurar que esté por encima de otros elementos si es necesario */
+}
+
+.opcion-obra {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #555;
+    transition: background-color 0.2s;
+}
+
+.opcion-obra:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para la opción actualmente seleccionada */
+.opcion-obra.seleccionado {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* Clase para ocultar el menú con animación */
+.oculto-menu {
+    max-height: 0;
+    overflow: hidden;
+    /* Se puede agregar una transición aquí si se usa max-height en lugar de display: none */
+    transition: max-height 0.3s ease-out; 
+    border: none !important; /* Eliminar el borde cuando está oculto */
+}
+/* Al abrir, forzamos un max-height alto para la animación */
+/* NOTA: Para un desplegable dinámico, es mejor usar la propiedad 'display: none' o calcular el max-height en JS */
+/* Por simplicidad, usaremos la clase .oculto-menu para display: none y manejar la transición de la flecha en JS */
+/* Si se mantiene la clase 'oculto-menu' para usar display: none en tu css/style.css, la animación de la flecha será suficiente: */
+/* .oculto-menu { display: none; } */

@@ -1,0 +1,43 @@
+{
+  "name": "com.appcorp.geofotowork",
+  "displayName": "GeoFotoWork",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "cordova-plugin-camera": "^8.0.0",
+    "cordova-plugin-email-composer": "^0.10.1",
+    "cordova-plugin-file": "^8.1.3",
+    "cordova-plugin-fingerprint-aio": "^6.0.1",
+    "cordova-plugin-geolocation": "^5.0.0",
+    "cordova-plugin-ionic-webview": "^5.0.1",
+    "cordova-sqlite-storage": "^7.0.0"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-fingerprint-aio": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      },
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-email-composer": {}
+    }
+  }
+}
